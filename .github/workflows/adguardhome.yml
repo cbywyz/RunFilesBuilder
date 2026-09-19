@@ -73,7 +73,7 @@ jobs:
 
           # 下载固定的 luci-app-adguardhome-all.ipk 到该目录 这版本luci界面最好用 而且每次变化的仅仅是内核
             curl -L -o "$ARCH/luci-app-adguardhome-all.ipk" \
-              "https://github.com/wukongdaily/RunFilesBuilder/releases/download/AdGuardHome_v0.107.55/luci-app-adguardhome-all.ipk"
+              "https://dl.openwrt.ai/packages-24.10/x86_64/kiddin9/luci-app-adguardhome_26.108.56344~be2cecb_all.ipk"
 
             echo "==> Downloaded for $ARCH:"
             ls -lh "$ARCH/luci-app-adguardhome-all.ipk"
@@ -92,7 +92,7 @@ jobs:
           fi
           # install luci-app-adguardhome IPK
           echo "Installing luci-app-adguardhome ipk"
-          if ! opkg install *.ipk 2>/dev/null; then
+          if ! opkg install --force-depends *.ipk 2>/dev/null; then
             echo "Package install failed"
             exit 1
           fi
